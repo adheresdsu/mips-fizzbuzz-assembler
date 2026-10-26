@@ -1,0 +1,48 @@
+MIPS assembler/disassembler verification
+
+PASS: All three Java source files compile.
+Compiler command: java -m jdk.compiler/com.sun.tools.javac.Main
+openjdk version "17.0.20" 2026-07-21
+Assembled 45 instructions, 10 data bytes.
+Created fizzbuzz.mhc-ascii and fizzbuzz.mhc-bin
+PASS: ASCII bits decode to exactly the binary file bytes.
+PASS: Header, entry address, 45 instructions and 10 data bytes are correct.
+Created reconstructed_ascii.asm; round-trip bytes verified.
+PASS: ASCII reconstruction reassembles to identical files.
+Created reconstructed.asm; round-trip bytes verified.
+PASS: BIN reconstruction reassembles to identical files.
+PASS: Part 1 encodings match all four independently calculated words.
+PASS: Immediate boundaries, labels, escaped strings and .byte round-trip.
+PASS: Rejects unsupported instruction: Assembly failed: Line 2: Unsupported instruction: mul
+PASS: Rejects unknown register: Assembly failed: Line 2: Unknown register: $bad
+PASS: Rejects undefined label: Assembly failed: Line 2: Undefined label: missing
+PASS: Rejects immediate range: Assembly failed: Line 2: Value out of range: 32768
+PASS: Rejects operand count: Assembly failed: Line 2: Expected 3 comma-separated operand(s).
+PASS: Rejects duplicate label: Assembly failed: Line 3: Duplicate label: x
+PASS: Rejects zero remainder divisor: Assembly failed: Line 2: rem divisor cannot be zero.
+PASS: Rejects reserved $at in rem: Assembly failed: Line 2: rem reserves $at.
+PASS: Rejects unsupported directive: Assembly failed: Line 2: Unsupported directive: .word
+PASS: Rejects unclosed quote: Assembly failed: Line 2: Unclosed quote.
+PASS: Rejects data branch target: Assembly failed: Line 5: Branch/jump target is not in .text: x
+PASS: Rejects truncated header: Disassembly failed: Truncated MHC1 header (needs 24 bytes).
+PASS: Rejects bad magic: Disassembly failed: Invalid MHC1 magic/version.
+PASS: Rejects truncated payload: Disassembly failed: Invalid segment lengths or file size.
+PASS: Rejects unknown opcode: Disassembly failed: At 0x00400000 (word 0xFC000000): Unsupported opcode: 63
+PASS: Rejects reserved encoding bits: Disassembly failed: Noncanonical encoding: reconstruction would change machine bytes.
+PASS: Rejects nonbinary ASCII: Disassembly failed: ASCII machine code allows only 0, 1 and whitespace.
+PASS: Rejects partial byte: Disassembly failed: Incomplete 8-bit byte in ASCII input.
+PASS: fizzbuzz.asm: MARS prints all 100 expected lines exactly.
+PASS: reconstructed.asm: MARS prints all 100 expected lines exactly.
+PASS: reconstructed_ascii.asm: MARS prints all 100 expected lines exactly.
+PASS: MARS independently assembles reconstructed .text to our 180 text bytes.
+
+File sizes:
+fizzbuzz.mhc-bin: 214 bytes
+fizzbuzz.mhc-ascii: 1773 bytes
+SHA-256 fizzbuzz.mhc-bin:
+a4734eeb63b8c3a2fddbd8fbf470676814440e51b438e1f2c77c019011395df4
+SHA-256 original/reconstructed/expected output:
+f039dc221ad122dda8b7226ad5bc68b8654e9e3a42dcea2b37554cd6f91b56af
+
+MARS uses its default settings: delayed branching OFF.
+All checks passed.

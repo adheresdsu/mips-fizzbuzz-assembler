@@ -1,0 +1,4 @@
+*.class
+__pycache__/
+roundtrip_*.mhc-ascii
+roundtrip_*.mhc-bin
